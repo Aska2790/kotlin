@@ -53,6 +53,20 @@ private fun main() = runBlocking {
             println(it)
         }
 
+
+    val flowInt = flowOf(1, 2, 3)
+    val flowString = flowOf("one", "two", "three", "four")
+    flowInt.zip(flowString){
+        int, string->  "$int $string"
+    }.collect {
+        println(it)
+    }
+
+    flowInt.combine(flowString){
+            int, string->  "$int $string"
+    }.collect {
+        println(it)
+    }
 }
 
 private fun flowProvider(): Flow<Int> = flow {
